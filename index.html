@@ -12,8 +12,8 @@
 <body>
 <h1>Ninja Tutles!</h1>
 
-<div id = "scar"><img src="assets/images/shredder.PNG" class="img" ><p id="overlay"></p></div>
-<div id ="targetValue"></div>
+<div id="scar"><img src="assets/images/shredder.PNG" class="img" ><p id="overlay"></p></div>
+<div id="targetValue"></div>
 <h2 id="wins"></h2>
 <h2 id="losses"></h2>
 <div id="choices"></div>
@@ -39,23 +39,31 @@ var targetNumber = Math.floor(Math.random() * 101) + 19;
 var counter = 0;
 var turtlesImg = ["assets/images/leo.PNG", "assets/images/raph.PNG","assets/images/don.PNG","assets/images/mike.PNG"];
 
-function reset(){
-    targetNumber = Math.floor(Math.random() * 101) + 19 
-   
-};
 
-function resetTurtle(){
-         
-};
+displayImages();
 
+function reset() {
+    console.log("inside reset");
+    targetNumber = Math.floor(Math.random() * 101) + 19
+    console.log("target number" + targetNumber);
+    $("#targetValue").text(0);
+    // displayImages();
+  for (i=0; i < 5; i++) {
+    console.log(' i!!!!',  $(`#${i}`) )
+    $(`#${i}`).attr("data-numbers", Math.floor(Math.random() * 12) + 1);
+  }
+};
 
 function displayImages(){
+  console.log("inside display images");
 
+  console.log("choices", $('#choices'));
   for (i=0; i < turtlesImg.length; i++){
 
     var imgChoice = $('<img>');
     imgChoice.addClass("turtleClass rando");  //similar to giving an id name to a div //javascript
     imgChoice.attr("src", turtlesImg[i]);
+    imgChoice.attr("id", i);
     imgChoice.attr("data-numbers", Math.floor(Math.random() * 12) + 1);
     console.log(imgChoice);
     $("#choices").append(imgChoice);  
@@ -63,9 +71,13 @@ function displayImages(){
  
 }
 
-displayImages();
+$('#turtle').click(function(){
+
+  console.log("TOMAS !!!!!")
+})
 
 $(".turtleClass").on("click", function(){
+  console.log("inside on click");
         // alert("heyy");
      var turtleValue = ($(this).attr("data-numbers"));  //current content (this)  , like a pronoun in grammer    
      turtleValue = parseInt(turtleValue);
@@ -78,15 +90,18 @@ $(".turtleClass").on("click", function(){
       wins++;
       $("#wins").text("You Win = " + wins);
       reset();
-      resetTurtle();
+      
+      
       
     }
     else if (counter >= targetNumber){
+      console.log("right before reset function");
       alert ("You Lose");
       losses++;
       $("#losses").text("You Lose = " + losses);
+      
       reset();
-      resetTurtle();
+      
       
     }
 
