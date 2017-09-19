@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <title>CrystalCollector</title>
+  <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>  
+</head>
+
+<body>
+<h1>Ninja Tutles!</h1>
+
+<div id = "scar"><img src="assets/images/shredder.PNG" class="img" ><p id="overlay"></p></div>
+<div id ="targetValue"></div>
+<h2 id="wins"></h2>
+<h2 id="losses"></h2>
+<div id="choices"></div>
+
+
+
+<!-- <br>
+<div class="container" id="leo"><img src="assets/images/leo.PNG" class="img"></div>
+<div class="container" id="raph"><img src="assets/images/raph.PNG" class="img"></div>
+<div class="container" id="don"><img src="assets/images/don.PNG" class="img"></div>
+<div class="container" id="mike"><img src="assets/images/mike.PNG" class="img"></div> -->
+
+<script type="text/javascript">
+$(document).ready(function() {
+
+$("#overlay").text("value to reach " + targetNumber);
+var losses = 0;
+$("#losses").text("You Lose = " + losses);
+var wins = 0;
+$("#wins").text("You Win = " + wins);
+var targetNumber = Math.floor(Math.random() * 101) + 19;
+// $("#targetValue").text("value to reach " + targetNumber);
+var counter = 0;
+var turtlesImg = ["assets/images/leo.PNG", "assets/images/raph.PNG","assets/images/don.PNG","assets/images/mike.PNG"];
+
+function reset(){
+    targetNumber = Math.floor(Math.random() * 101) + 19 
+   
+};
+
+function resetTurtle(){
+         
+};
+
+
+function displayImages(){
+
+  for (i=0; i < turtlesImg.length; i++){
+
+    var imgChoice = $('<img>');
+    imgChoice.addClass("turtleClass rando");  //similar to giving an id name to a div //javascript
+    imgChoice.attr("src", turtlesImg[i]);
+    imgChoice.attr("data-numbers", Math.floor(Math.random() * 12) + 1);
+    console.log(imgChoice);
+    $("#choices").append(imgChoice);  
+  }
+ 
+}
+
+displayImages();
+
+$(".turtleClass").on("click", function(){
+        // alert("heyy");
+     var turtleValue = ($(this).attr("data-numbers"));  //current content (this)  , like a pronoun in grammer    
+     turtleValue = parseInt(turtleValue);
+     targetNumber -= turtleValue;
+     $("#targetValue").text(targetNumber);
+
+    
+    if (counter === targetNumber){
+      alert ("You Win");    
+      wins++;
+      $("#wins").text("You Win = " + wins);
+      reset();
+      resetTurtle();
+      
+    }
+    else if (counter >= targetNumber){
+      alert ("You Lose");
+      losses++;
+      $("#losses").text("You Lose = " + losses);
+      reset();
+      resetTurtle();
+      
+    }
+
+});
+
+});
+
+
+// reset for counter, win losses
+// reset the images new values
+
+
+// var leo = 0;
+// var raph = 0;
+// var don = 0;
+// var mike = 0;
+// var arrRando = ["50","51","52","53", "54"];
+// var arrLeo = ["1","2","3","4", "5"];
+// var arrRaph = ["6","7","8","9", "10"];
+// var arrDon = ["11","12","13","14", "15"];
+// var arrMike = ["16","17","18","19", "20"];
+
+// //put images in array, then loop through and assign
+
+// var computerGuess = arrRando[Math.floor(Math.random() * arrRando.length)];
+// var leoGuess = arrLeo[Math.floor(Math.random() * arrLeo.length)];
+// var raphGuess = arrRaph[Math.floor(Math.random() * arrRaph.length)];
+// var donGuess = arrDon[Math.floor(Math.random() * arrDon.length)];
+// var mikeGuess = arrMike[Math.floor(Math.random() * arrMike.length)];
+
+// console.log("computer guess" + computerGuess);
+// console.log("leo" + leoGuess);
+// console.log("raph" + raphGuess);
+// console.log("don" + donGuess);
+// console.log("mike" + mikeGuess);
+
+// $(document).ready(function() {   
+
+
+
+// $("#leo").on("click", function() {
+        
+//            leo ++;
+//            console.log(leo);
+// });
+
+
+// });
+
+</script>
+  
+<footer>Copyright @MikeScheeringa</footer>
+</body>
+
+</html>
+
