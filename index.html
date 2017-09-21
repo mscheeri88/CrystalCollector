@@ -29,13 +29,13 @@
 <script type="text/javascript">
 $(document).ready(function() {
 
-$("#overlay").text("value to reach " + targetNumber);
+// $("#overlay").text("value to reach " + targetNumber);
 var losses = 0;
 $("#losses").text("You Lose = " + losses);
 var wins = 0;
 $("#wins").text("You Win = " + wins);
 var targetNumber = Math.floor(Math.random() * 101) + 19;
-// $("#targetValue").text("value to reach " + targetNumber);
+$("#targetValue").text("value to reach " + targetNumber);
 var counter = 0;
 var turtlesImg = ["assets/images/leo.PNG", "assets/images/raph.PNG","assets/images/don.PNG","assets/images/mike.PNG"];
 
